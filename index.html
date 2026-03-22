@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>K&K Family Private Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --paper: #f7f4ef;
+      --gold: #b8924a;
+      --gold-light: #d4aa6a;
+      --muted: #7a7670;
+      --card-bg: #ffffff;
+      --border: #e2ddd6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Subtle grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .monogram {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .reg-info {
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .reg-info span {
+      display: inline-block;
+      margin: 0 0.4rem;
+      opacity: 0.5;
+    }
+
+    /* ── Main ── */
+    main {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      width: 100%;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 4rem;
+      max-width: 580px;
+    }
+
+    /* ── Service Cards ── */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2.2rem 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      border-color: transparent;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1.4rem;
+      color: var(--gold);
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+      color: var(--ink);
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 1.6rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .card-link svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .card-link svg {
+      transform: translateX(3px);
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 2rem;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-text strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    header  { animation: fadeUp 0.6s ease both; }
+    .intro  { animation: fadeUp 0.6s 0.15s ease both; }
+    .section-label { animation: fadeUp 0.6s 0.1s ease both; }
+    .card:nth-child(1) { animation: fadeUp 0.6s 0.25s ease both; }
+    .card:nth-child(2) { animation: fadeUp 0.6s 0.35s ease both; }
+
+    @media (max-width: 480px) {
+      header { padding: 2rem 1.2rem 1.5rem; }
+      main   { padding: 2.5rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="monogram">K&amp;K</div>
+    <h1>K&amp;K Family Private Limited</h1>
+    <p class="reg-info">Incorporated in Singapore <span>·</span> UEN 202XXXXXXX</p>
+  </header>
+
+  <main>
+    <p class="intro">
+      We build focused digital products that serve families and communities — from everyday commerce to streamlined operations.
+    </p>
+
+    <div class="section-label">Our Services</div>
+
+    <div class="services">
+
+      <!-- MomMart -->
+      <a class="card" href="http://mommart.vercel.app" target="_blank" rel="noopener">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M12 16h2l2 8h8l2-8h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="17" cy="26" r="1.2" fill="currentColor"/>
+          <circle cx="23" cy="26" r="1.2" fill="currentColor"/>
+          <path d="M14.5 13.5c0-3 1.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <div class="card-name">MomMart</div>
+        <div class="card-desc">
+          A curated marketplace designed with mothers in mind — connecting families to quality products and trusted sellers.
+        </div>
+        <div class="card-link">
+          Visit MomMart
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Clearpass -->
+      <a class="card" href="https://clearpass-production-9e33.up.railway.app" target="_blank" rel="noopener">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.2"/>
+          <rect x="13" y="18" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M15.5 18v-3a4.5 4.5 0 019 0v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="20" cy="23" r="1.5" fill="currentColor"/>
+        </svg>
+        <div class="card-name">Clearpass</div>
+        <div class="card-desc">
+          A streamlined access and clearance management platform — simplifying verification and approval workflows for organisations.
+        </div>
+        <div class="card-link">
+          Visit Clearpass
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-text">
+      &copy; 2025 <strong>K&amp;K Family Private Limited</strong>. All rights reserved. &nbsp;·&nbsp; Singapore
+    </p>
+  </footer>
+
+</body>
+</html>
